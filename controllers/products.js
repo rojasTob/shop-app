@@ -6,16 +6,13 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
     const prod = new Product(req.body.title);
-    prod.save();
-    res.redirect('/');
+    prod.save().then(() => {
+        res.redirect('/');
+    });
 };
 
 exports.getProducts = (req, res) => {
-    Product.fetchAll(products => {
-        res.render('shop', {
-            pageTitle: 'Shop',
-            path: '/',
-            prods: products
-        });
+    Product.fetchAll().then((p) => {
+        res.render('shop', {pageTitle: 'Shop', path: '/', prods: p});
     });
 };
