@@ -4,4 +4,20 @@ block styles
     link(rel="stylesheet", href="/css/shop.css")
 block content
     main
-        h3 admin products page
+        .grid
+            if prods.length > 0
+                each product in prods
+                    article.card-product-item
+                        header.card__header
+                            h1.product__title #{product.title}
+                        div.card__image
+                            img(src=product.imageUrl, alt="")
+                        div.card__content
+                            h2.product__price $ #{product.price}
+                            p.product__description #{product.description}
+                        .card__actions
+                            a.btn(href="/admin/edit-product") Edit
+                            form(action="/admin/delete-product" method="POST")
+                            button.btn Delete
+            else
+                h3 There are no products!
