@@ -23,19 +23,26 @@ const saveProductsOnFile = async (prods) => {
 
 module.exports = class Product {
     constructor(title, imageUrl, description, price){
-        this.title = title;
-        this.imageUrl = imageUrl;
-        this.description = description;
-        this.price = price;
+      this.title = title;
+      this.imageUrl = imageUrl;
+      this.description = description;
+      this.price = price;
     }
 
     async save() {
-        const prods = await getProductsFromFile();
-        prods.push(this);
-        await saveProductsOnFile(prods);
+      this.id = Math.floor(Math.random() * 100).toString();
+      const prods = await getProductsFromFile();
+      prods.push(this);
+      await saveProductsOnFile(prods);
     }
     
     static async fetchAll() {
-        return await getProductsFromFile();
+      return await getProductsFromFile();
+    }
+
+    static async findById(id) {
+      const products = await getProductsFromFile();
+      const prod = products.find(product => product.id === id);
+      return prod;
     }
 }

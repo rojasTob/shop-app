@@ -88,9 +88,9 @@ main {
   
   .btn {
     font: inherit;
-    border: 1px solid orange;
+    border: 1px solid rgb(68, 68, 68);
     color: black;
-    background: white;
+    background: #e9e2e2;
     border-radius: 3px;
     cursor: pointer;
   }
@@ -99,4 +99,8 @@ main {
   .btn:active {
     background-color: gray;
     color: white;
+  }
+
+  .abtn {
+    text-decoration: none;
   }

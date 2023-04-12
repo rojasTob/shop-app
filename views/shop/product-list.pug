@@ -16,7 +16,9 @@ block content
                             h2.product__price $ #{product.price}
                             p.product__description #{product.description}
                         .card__actions
-                            form(action="/add-to-cart" method="POST")
-                                button.btn Add to cart
+                            a.btn.abtn(href="/products/"+ product.id) Details
+                            - var productId = product.id                        
+                            include ../includes/add-cart
+                            
             else
                 h3 There are no products!
